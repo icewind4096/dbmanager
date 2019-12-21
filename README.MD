@@ -27,3 +27,4 @@
     1). @Repository是Spring的注解, 需要在Spring中配置扫描地址，然后生成Dao层的Bean才能被注入到Service层中。  
     2). @Mapper是MyBatis的注解,不需要配置扫描地址，通过xml里面的namespace里面的接口地址，生成了Bean后注入到Service层中。  
     3). 如果@Repository和@Mapper都不想写，请在启动类上加入@MapperScan, 将会自动扫描路径下的所有接口
+4. 实体类如果有自定义构造方法，必须收工写一个无参构造方法  

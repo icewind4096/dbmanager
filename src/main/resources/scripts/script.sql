@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `account` VARCHAR(32) NOT NULL COMMENT '账册名称',
   `name` VARCHAR(64) NOT NULL COMMENT '表名',
-  `status` INT(11) NOT NULL DEFAULT 0 COMMENT '表状态，默认值：0 运行中',
+  `status` INT(11) NOT NULL DEFAULT 0 COMMENT '表状态，默认值：0 新建记录，还没有建立实体表',
   `operator` VARCHAR(16) NOT NULL COMMENT '建立人',
   `crTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日志',
   `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改日期',
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `tables` (
 
 DROP PROCEDURE IF EXISTS `tablesSave`;
 DELIMITER //
-CREATE PROCEDURE tablesSave (IN sAccount VARCHAR(32), IN sName VARCHAR(64), IN iStatus INT, IN sOperator VARCHAR(16), OUT iID INT)
+CREATE PROCEDURE tablesSave (OUT iID INT, IN sAccount VARCHAR(32), IN sName VARCHAR(64), IN iStatus INT, IN sOperator VARCHAR(16))
   BEGIN
     INSERT INTO tables (account, name, operator, status)
     VALUES (sAccount, sName, sOperator, iStatus);
@@ -27,4 +27,13 @@ CREATE PROCEDURE tablesSave (IN sAccount VARCHAR(32), IN sName VARCHAR(64), IN i
 //
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS `tablesFindByAccountAndName`;
+DELIMITER //
+CREATE PROCEDURE tablesFindByAccountAndName (IN sAccount VARCHAR(32), IN sName VARCHAR(64))
+  BEGIN
+    SELECT id, account, name, operator, status, crTime, updateTime
+    FROM tables
+    WHERE account = sAccount AND name = sName;
+  END;
+//
+DELIMITER ;

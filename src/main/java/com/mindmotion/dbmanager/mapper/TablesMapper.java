@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TablesMapper {
+    Integer save(Tables tables);
+    Tables tablesFindByAccountAndName(Tables tables);
     List<Tables> findTablesByAccount(String account);
 }

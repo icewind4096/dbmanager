@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ITablesService {
     //新建Tables记录
-    TablesDTO create(TablesDTO tablesDTO);
+    Integer create(TablesDTO tablesDTO);
 
     //修改Tables记录
     TablesDTO update(TablesDTO tablesDTO);

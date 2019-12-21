@@ -20,4 +20,16 @@ public class Tables implements Serializable {
     private String operator;
     private Timestamp crTime;
     private Timestamp updateTime;
+
+    //存在有参构造方法时，必须提供一个无参构造方法
+    public Tables(){
+
+    }
+
+    public Tables(String account, String name, Integer status, String operator) {
+        this.account = account;
+        this.name = name;
+        this.status = status;
+        this.operator = operator;
+    }
 }

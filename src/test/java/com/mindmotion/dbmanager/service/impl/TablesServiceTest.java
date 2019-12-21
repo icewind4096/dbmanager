@@ -1,5 +1,6 @@
 package com.mindmotion.dbmanager.service.impl;
 
+import com.mindmotion.dbmanager.dto.TablesDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ class TablesServiceTest {
 
     @Test
     void create() {
+        System.out.println(tablesService.create(new TablesDTO(0, "IBM", "IBM_ACCOUNT_1", 0, "IBM_OPERATOR_1")));
+        System.out.println(tablesService.create(new TablesDTO(0, "IBM", "IBM_ACCOUNT_2", 0, "IBM_OPERATOR_2")));
+        System.out.println(tablesService.create(new TablesDTO(0, "IBM", "IBM_ACCOUNT_3", 0, "IBM_OPERATOR_3")));
+        System.out.println(tablesService.create(new TablesDTO(0, "IBM", "IBM_ACCOUNT_4", 0, "IBM_OPERATOR_4")));
+        System.out.println(tablesService.create(new TablesDTO(0, "IBM", "IBM_ACCOUNT_4", 0, "IBM_OPERATOR_4")));
     }
 
     @Test

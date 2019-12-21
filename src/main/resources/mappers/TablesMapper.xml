@@ -6,4 +6,23 @@
         FROM tables
         WHERE account = #{account}
     </select>
+
+    <select id="tablesFindByAccountAndName" parameterType="com.mindmotion.dbmanager.entity.Tables" resultType="com.mindmotion.dbmanager.entity.Tables" statementType="CALLABLE">
+        {call tablesFindByAccountAndName(
+            #{account, mode=IN}
+           ,#{name, mode=IN}
+           )
+        }
+    </select>
+
+    <insert id="save" parameterType="com.mindmotion.dbmanager.entity.Tables" statementType="CALLABLE">
+        {call tablesSave(
+            #{id, mode=OUT, jdbcType=INTEGER}
+           ,#{account, mode=IN}
+           ,#{name, mode=IN}
+           ,#{status, mode=IN}
+           ,#{operator, mode=IN}
+           )
+        }
+    </insert>
 </mapper>
