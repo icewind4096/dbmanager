@@ -27,6 +27,20 @@ CREATE PROCEDURE tablesSave (OUT iID INT, IN sAccount VARCHAR(32), IN sName VARC
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `tablesUpdate`;
+DELIMITER //
+CREATE PROCEDURE tablesUpdate (OUT iID INT, IN sAccount VARCHAR(32), IN sName VARCHAR(64), IN iStatus INT, IN sOperator VARCHAR(16))
+  BEGIN
+    UPDATE tables
+    SET account = sAccount
+    , name = sName
+    , operator = sOperator
+    , status = iStatus
+    WHERE id = iID;
+  END;
+//
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `tablesFindByAccountAndName`;
 DELIMITER //
 CREATE PROCEDURE tablesFindByAccountAndName (IN sAccount VARCHAR(32), IN sName VARCHAR(64))
@@ -34,6 +48,17 @@ CREATE PROCEDURE tablesFindByAccountAndName (IN sAccount VARCHAR(32), IN sName V
     SELECT id, account, name, operator, status, crTime, updateTime
     FROM tables
     WHERE account = sAccount AND name = sName;
+  END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `tablesFindByID`;
+DELIMITER //
+CREATE PROCEDURE tablesFindByID (IN iID INT)
+  BEGIN
+    SELECT id, account, name, operator, status, crTime, updateTime
+    FROM tables
+    WHERE id = iID
   END;
 //
 DELIMITER ;
